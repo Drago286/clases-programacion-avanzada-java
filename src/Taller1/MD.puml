@@ -1,0 +1,52 @@
+@startuml
+
+class Mesa {
+  numero
+  posicion
+  estado
+}
+
+class Cliente {
+  nombre
+  edad
+}
+
+class Trabajador {
+  nombre
+  edad
+  tipoContrato
+  fechaContratacion
+}
+
+class Producto {
+  nombre
+  precio
+  categoria
+  stock
+}
+
+class Orden {
+  productos
+  cantidad
+  resumen
+  total
+  trabajador
+  mesa
+}
+
+class Restaurante {
+  mesas
+  trabajadores
+  menu
+}
+
+Mesa "1" -- "0..*" Cliente
+Mesa "1" -- "0..*" Orden
+Trabajador "1" -- "0..*" Orden
+Producto "1" -- "0..*" Orden
+Restaurante "1" -- "1..*" Mesa
+Restaurante "1" -- "0..*" Trabajador
+Restaurante "1" -- "0..*" Producto
+
+@enduml
+

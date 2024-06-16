@@ -1,0 +1,34 @@
+@startuml
+
+class Cancion {
+  - titulo: String
+  - artista: String
+  - duracion: int
+}
+
+class Nodo {
+  - cancion: Cancion
+  - siguiente: Nodo
+}
+
+class ListaEnlazada {
+  - cabeza: Nodo
+  + agregarCancion(c: Cancion): void
+  + eliminarCancion(c: Cancion): void
+  + mostrarListaReproduccion(): void
+}
+
+class ReproductorDeMusica {
+  - listaReproduccion: ListaEnlazada
+  + agregarCancion(c: Cancion): void
+  + eliminarCancion(c: Cancion): void
+  + reproducirListaReproduccion(): void
+}
+
+Cancion --> "1" Nodo
+Nodo "1" -up-> "0..1" Nodo : siguiente
+ListaEnlazada "1" -- "0..1" Nodo : cabeza
+ListaEnlazada "1" o-- "1" Cancion : contiene
+ReproductorDeMusica "1" -- "1" ListaEnlazada : utiliza
+
+@enduml

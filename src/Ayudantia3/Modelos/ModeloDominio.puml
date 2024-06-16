@@ -1,0 +1,14 @@
+@startuml
+hide empty members
+
+Entity Objeto1 {
+Nombre
+Color
+}
+Entity Objeto2 {
+Nombre
+Color
+}
+
+Objeto1"1"--"1"Objeto2 : comparte >
+@enduml

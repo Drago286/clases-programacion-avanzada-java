@@ -1,0 +1,26 @@
+@startuml
+
+hide empty members
+
+Entity CompaniaSeguridad{
+precio
+direccion
+}
+Entity Condominio{
+direccion
+Casas
+}
+Entity Casa{
+número
+Huespedes
+
+}
+Entity Huesped{
+nombre
+edad
+}
+
+Condominio "*"--"1" CompaniaSeguridad : es contratador por <
+Condominio "1"--"*" Casa : posee >
+Casa "1"--"*" Huesped: tienen >
+@enduml

@@ -1,0 +1,87 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Class CompaniaSeguridad{
+int precio
+String direccion
+ListaCondominio[] listaCondominios
+
+Seguridad() seguridad
+Get´s()
+Set´s()
+
+}
+Class Condominio{
+direccion
+ListaCasa listaCasas
+
+Condominio() condominio
+Get´s()
+Set´s()
+
+}
+Class Casa{
+número
+ListaHuesped listaHuespedes
+
+Casa() casa
+Get´s()
+Set´s()
+}
+
+Class ListaCasa{
+Casa[] listaCasas
+int cantidadMax
+int cantidadActual
+
+ListaCasa() listaCasas
+Get´s()
+Set´s()
+agregarCasa() boolean
+eliminarCasa() boolean
+buscarCasa() int
+}
+Class ListaHuesped{
+Huesped[] listaHuespedes
+int cantidadMax
+int cantidadActual
+
+ListaHuesped() listaHuespedes
+Get´s()
+Set´s()
+agregarHuesped() boolean
+eliminarHuesped() boolean
+buscarHuesped() int
+}
+
+Class ListaCondominio{
+Condominio[] listaCondominios
+int cantidadMax
+int cantidadActual
+
+ListaCondominio() listaCondominios
+Get´s()
+Set´s()
+agregarCondominio() boolean
+eliminarCondominio() boolean
+buscarCondominio() int
+
+}
+
+Class Huesped{
+nombre
+edad
+
+Huesped() huesped
+Get´s()
+Set´s()
+}
+CompaniaSeguridad "1"-- "*" ListaCondominio : tiene >
+Condominio "1"-- "*" ListaCasa : tiene >
+Casa "1"-- "*" ListaHuesped : tiene >
+
+ListaCondominio*--Condominio : contiene
+ListaHuesped*--Huesped : contiene
+ListaCasa*--Casa : contiene
+
+@enduml

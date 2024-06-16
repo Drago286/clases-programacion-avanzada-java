@@ -1,0 +1,55 @@
+@startuml
+hide empty members
+Class Ciudadano{
+String nombre
+String RUT
+String fechaNacimiento
+
+Ciudadano()
+Get's()
+Set's()
+toString()
+}
+Class ListaCiudadano{
+Ciudadano[] listaCiudadano
+int cantMaxima
+int cantActual
+
+ListaCiudadano()
+Get's()
+Set's()
+insertar(Ciudadano ciudadano)
+buscar(String RUT)
+eliminar(Ciudadano ciudadano)
+
+}
+Interface Sistema{
+ ingresarCiudadano(Ciudadano ciudadano);
+     modificarCiudadano(int posicion, String nombre);
+     eliminarCiudadano(int posicion);
+     buscarCiudadano(String rutBuscado);
+     desplegarInformacion(int posicion);
+}
+
+Class SistemaImpl{
+ListaCiudadano listaCiudadano
+SistemaImpl()
+}
+
+Class Instalador{
+Sistema sistema
+
+Instalador()
+InyectorSistema()
+}
+
+ListaCiudadano *--Ciudadano : Contiene
+
+SistemaImpl "1"-- "1" ListaCiudadano : Posee <
+
+Sistema <|.. SistemaImpl : Implementa
+
+Instalador"1" --"1" Sistema : instala
+
+
+@enduml

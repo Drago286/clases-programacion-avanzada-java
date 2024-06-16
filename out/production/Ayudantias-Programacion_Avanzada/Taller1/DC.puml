@@ -1,0 +1,117 @@
+@startuml
+hide empty members
+
+class Mesa{
+ListaClientes listaCliente
+ListaProductos listaProductos
+int numeroMesa
+Double ubicacion
+Mesero mesero
+Boolean enUso
+Mesa()
+Get's()
+Set's()
+asignarClientes()
+realizarOrden()
+terminarOrden()
+}
+
+class Cliente{
+String nombre
+int edad
+Cliente()
+Get's()
+Set's()
+}
+
+class Mesero{
+String nombre
+int edad
+String tipoContrato
+String fechaContratacion
+Mesero()
+Get's()
+Set's()
+modificarContrato()
+}
+class Producto{
+String nombre
+int precio
+String categoria
+int stock
+Producto()
+Get's()
+Set's()
+}
+class ListaClientes{
+Cliente[] listaClientes
+int cantidadMaxima
+int cantidadActual
+ListaClientes()
+Get's()
+Set's()
+insertarCliente(Cliente nuevoCliente)
+buscarCliente(Cliente nuevoCliente)
+}
+
+class ListaProductos{
+Producto[] listaProductos
+int cantidadMaxima
+int cantidadActual
+ListaProductos()
+Get's()
+Set's()
+insertarProducto(Producto producto)
+buscarProducto(Producto producto)
+actualizarProducto(Producto producto)
+eliminarProducto(Producto producto)
+}
+
+class ListaMeseros{
+Mesero[] listaMeseros
+int cantidadMaxima
+int cantidadActual
+ListaMeseros()
+Get's()
+Set's()
+insertarMesero(Mesero nuevoMesero)
+buscarMesero(Mesero nuevoMesero)
+actualizarMesero(Mesero nuevoMesero)
+eliminarMesero(Mesero nuevoMesero)
+}
+
+class MatrizMesas{
+Mesa[][] mesas
+int largo
+int ancho
+int cantidadMaxima
+int cantidadActual
+MatrizMesas()
+Get's()
+Set's()
+asignarMesa()
+}
+class RestauranteImpl{
+ListaProductos inventario
+ListaMeseros meseros
+MatrizMesas mesas
+SistemaRestauranteImpl()
+}
+interface SistemaRestaurante{
+gestionarPersonal()
+gestionarInvenatario()
+atenderClientes()
+}
+
+SistemaRestaurante ..> RestauranteImpl : implements
+RestauranteImpl "1" --> "1"ListaMeseros : tiene
+RestauranteImpl "1" --> "1"ListaProductos : tiene
+RestauranteImpl "1" --> "1"MatrizMesas : tiene
+Mesa "1" --> "1"ListaClientes : posee
+Mesa "1" --> "1"ListaProductos : posee
+MatrizMesas  --> Mesa : contiene
+
+ListaProductos "1"-->"0..*"Producto : almacena
+ListaClientes "1"-->"0..*"Cliente : almacena
+ListaMeseros "1"-->"0..*"Mesero : almacena
+@enduml

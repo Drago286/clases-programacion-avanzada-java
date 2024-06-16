@@ -1,0 +1,72 @@
+User
+asi quedo: @startuml
+
+abstract Usuario {
+  - String nombreUsuario
+  - String email
+  - String contrasena
+  - ListaDobleEnlazada<Usuario> contactos
+  -ListaMensaje mensajes
+  + agregarUsuario(Usuario usuario)
+  + eliminarUsuario(Usuario usuario)
+  +administrarMensajes()
+}
+
+class UsuarioComun extends Usuario {
+  - String informacionPersonal
+}
+
+class UsuarioEmpresarial extends Usuario  {
+  - String nombreEmpresa
+  - String direccionEmpresa
+}
+
+class ListaDobleEnlazada {
+  - Nodo cabeza
+  - Nodo cola
+  + agregarPrimero(dato)
+  + agregarUltimo(dato)
+  + eliminar(dato)
+}
+
+class Nodo {
+  - Usuario Dato
+  - Nodo<Usuario> anterior
+  - Nodo<Usuario> siguiente
+}
+
+class Mensaje {
+  - String contenido
+  - Usuario remitente
+  - Usuario destinatario
+  +Mensaje()
+  +Get's()
+  +Set´s()
+}
+
+class ListaMensaje {
+  - Mensaje[] elementos
+  + agregar(elemento)
+  + eliminar(elemento)
+  + obtener(indice)
+}
+interface Chat{
++gestionarUsuarios()
+}
+class ChatImpl implements Chat{
+-ListaDobleEnlazada usuarios
++ChatImpl()
+}
+
+
+
+ChatImpl "1"-- "1" ListaDobleEnlazada : Posee
+ListaDobleEnlazada "1" *-- "*" Nodo : Contiene
+Nodo "1" *-- "1" Usuario : Contiene
+Nodo  <-->  Nodo
+UsuarioComun "1" -- "*"ListaMensaje : Tiene
+UsuarioEmpresarial "1" -- "*"ListaMensaje : Tiene
+ListaMensaje "1" *-- Mensaje : Contiene
+Usuario "1" -- "1" ListaDobleEnlazada : Posee
+
+@enduml

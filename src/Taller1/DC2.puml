@@ -1,0 +1,121 @@
+@startuml
+hide empty members
+
+class Mesa {
+  - listaCliente: ListaClientes
+  - listaProductos: ListaProductos
+  - numeroMesa: int
+  - ubicacion: Double
+  - mesero: Mesero
+  - enUso: Boolean
+  + Mesa()
+  + Get's()
+  + Set's()
+  + asignarClientes()
+  + realizarOrden()
+  + terminarOrden()
+}
+
+class Cliente {
+  - nombre: String
+  - edad: int
+  + Cliente()
+  + Get's()
+  + Set's()
+}
+
+class Mesero {
+  - nombre: String
+  - edad: int
+  - tipoContrato: String
+  - fechaContratacion: String
+  + Mesero()
+  + Get's()
+  + Set's()
+  + modificarContrato()
+}
+
+class Producto {
+  - nombre: String
+  - precio: int
+  - categoria: String
+  - stock: int
+  + Producto()
+  + Get's()
+  + Set's()
+}
+
+class ListaClientes {
+  - listaClientes: Cliente[]
+  - cantidadMaxima: int
+  - cantidadActual: int
+  + ListaClientes()
+  + Get's()
+  + Set's()
+  + insertarCliente(Cliente nuevoCliente)
+  + buscarCliente(Cliente nuevoCliente)
+}
+
+class ListaProductos {
+  - listaProductos: Producto[]
+  - cantidadMaxima: int
+  - cantidadActual: int
+  + ListaProductos()
+  + Get's()
+  + Set's()
+  + insertarProducto(Producto producto)
+  + buscarProducto(Producto producto)
+  + actualizarProducto(Producto producto)
+  + eliminarProducto(Producto producto)
+}
+
+class ListaMeseros {
+  - listaMeseros: Mesero[]
+  - cantidadMaxima: int
+  - cantidadActual: int
+  + ListaMeseros()
+  + Get's()
+  + Set's()
+  + insertarMesero(Mesero nuevoMesero)
+  + buscarMesero(Mesero nuevoMesero)
+  + actualizarMesero(Mesero nuevoMesero)
+  + eliminarMesero(Mesero nuevoMesero)
+}
+
+class MatrizMesas {
+  - mesas: Mesa[][]
+  - largo: int
+  - ancho: int
+  - cantidadMaxima: int
+  - cantidadActual: int
+  + MatrizMesas()
+  + Get's()
+  + Set's()
+  + asignarMesa()
+}
+
+class RestauranteImpl {
+  - inventario: ListaProductos
+  - meseros: ListaMeseros
+  - mesas: MatrizMesas
+  + RestauranteImpl()
+}
+
+interface SistemaRestaurante {
+  + gestionarPersonal()
+  + gestionarInventario()
+  + atenderClientes()
+}
+
+SistemaRestaurante <|.. RestauranteImpl : implements
+RestauranteImpl "1" -->"1" ListaMeseros : tiene
+RestauranteImpl "1" --> "1" ListaProductos : tiene
+RestauranteImpl "1" --> "1" MatrizMesas : tiene
+Mesa "1" --> "1" ListaClientes : posee
+Mesa "1" --> "1" ListaProductos : posee
+MatrizMesas *-- Mesa : contiene
+
+ListaProductos "1"*--"0..*" Producto : almacena
+ListaClientes "1"*--"0..*" Cliente : almacena
+ListaMeseros "1"*--"0..*" Mesero : almacena
+@enduml

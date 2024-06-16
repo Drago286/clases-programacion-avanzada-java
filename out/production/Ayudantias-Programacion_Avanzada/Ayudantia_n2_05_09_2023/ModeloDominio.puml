@@ -1,0 +1,30 @@
+@startuml
+hide empty members
+left to right direction
+
+entity Veterinaria{
+direccion
+listaMascotas
+capacidadMaxima
+cantidadActual
+}
+entity Mascota{
+nombre
+edad
+especie
+duenio
+alta
+}
+entity Duenio{
+nombre
+edad
+}
+
+Veterinaria "1"--"1..*"Mascota : atiende >
+
+Mascota "1..*" -- "1"Duenio : tiene >
+
+
+
+
+@enduml
